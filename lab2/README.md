@@ -87,19 +87,42 @@ Display a live stream of container(s) resource usage statistics
 
 sudo docker stats
 
+# Dockerize prediction-ui-embedded
+
+sudo docker build -t indikakumara/prediction-ui-embedded:0.0.1 .
+sudo docker run -p  5000:5000 -d --name=prediction-ui-embedded indikakumara/prediction-ui-embedded:0.0.1
+sudo docker start prediction-ui-embedded
+sudo docker logs prediction-ui-embedded
+
+
 # Dockerize a Node JS application
 
 git clone https://github.com/johnpapa/node-hello.git
 
 create the Dockerfile and then
 
-sudo docker build -t node-hello:0.0.1 .
+sudo docker build -t node-hello:0.0.1 -f Dockerfile_nodejs .
 
 sudo docker run -p  5003:3000 -d --name=node-hello node-hello:0.0.1
 
 gcloud compute firewall-rules create node-port-4 --allow tcp:5003
 
 http://External_IP:5003/
+
+# Ollama Local LLM Deployment
+
+cd lab2/ollama1/
+
+sudo docker build -t myollama:0.0.1 .
+
+sudo docker run -v /home/indika_kuma/ollama:/root/.ollama -p 5005:11434 -d --name=myollama myollama:0.0.1
+
+sudo docker logs myollama
+
+## to test, run the client 
+cd ../ollama-client/
+
+sh run_client.sh
 
 
 # Containers and Port Forwarding
