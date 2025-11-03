@@ -1,7 +1,7 @@
-##Here, create the docker compose file
+## Here, create the docker compose file
 
-##Useful Docker Compose Commands 
-
+## Useful Docker Compose Commands 
+```
 sudo docker compose build 
 sudo docker compose up -d
 sudo docker-compose down 
@@ -13,3 +13,4 @@ sudo docker compose down
 sudo docker compose rm
 sudo docker compose logs
 sudo docker compose down -v --rmi all
+```
